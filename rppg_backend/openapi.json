@@ -1,0 +1,389 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "rPPG HR + experimental RR - checked backend",
+    "description": "Phase 1 research demonstration. RR has no independent reference validation.",
+    "version": "1.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/input-contract": {
+      "get": {
+        "summary": "Input Contract",
+        "operationId": "input_contract_v1_input_contract_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/vitals": {
+      "post": {
+        "summary": "Vitals",
+        "operationId": "vitals_v1_vitals_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VitalsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VitalsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "RRDetails": {
+        "properties": {
+          "rr_breaths_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rr Breaths Min"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "experimental_unvalidated",
+              "unavailable_signal_quality"
+            ],
+            "title": "Status"
+          },
+          "validated": {
+            "type": "boolean",
+            "const": false,
+            "title": "Validated"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "candidate_breaths_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Candidate Breaths Min"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reasons"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/RRQuality"
+          },
+          "limitations": {
+            "type": "string",
+            "title": "Limitations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rr_breaths_min",
+          "status",
+          "validated",
+          "method",
+          "candidate_breaths_min",
+          "reasons",
+          "quality",
+          "limitations"
+        ],
+        "title": "RRDetails"
+      },
+      "RRQuality": {
+        "properties": {
+          "active_rois": {
+            "type": "integer",
+            "title": "Active Rois"
+          },
+          "agreeing_rois": {
+            "type": "integer",
+            "title": "Agreeing Rois"
+          },
+          "roi_peak_breaths_min": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Roi Peak Breaths Min"
+          },
+          "peak_concentration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Peak Concentration"
+          },
+          "confidence_calibrated": {
+            "type": "boolean",
+            "const": false,
+            "title": "Confidence Calibrated"
+          }
+        },
+        "type": "object",
+        "required": [
+          "active_rois",
+          "agreeing_rois",
+          "roi_peak_breaths_min",
+          "peak_concentration",
+          "confidence_calibrated"
+        ],
+        "title": "RRQuality"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VitalsRequest": {
+        "properties": {
+          "sample_hz": {
+            "type": "integer",
+            "const": 20,
+            "title": "Sample Hz"
+          },
+          "channels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 9,
+            "minItems": 9,
+            "title": "Channels"
+          },
+          "rgb_window": {
+            "items": {
+              "items": {
+                "type": "number",
+                "maximum": 255.0,
+                "minimum": 0.0
+              },
+              "type": "array",
+              "maxItems": 9,
+              "minItems": 9
+            },
+            "type": "array",
+            "maxItems": 600,
+            "minItems": 600,
+            "title": "Rgb Window"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "sample_hz",
+          "channels",
+          "rgb_window"
+        ],
+        "title": "VitalsRequest"
+      },
+      "VitalsResponse": {
+        "properties": {
+          "hr_bpm": {
+            "type": "number",
+            "title": "Hr Bpm"
+          },
+          "hr_status": {
+            "type": "string",
+            "const": "preliminary_cnn",
+            "title": "Hr Status"
+          },
+          "rr_breaths_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rr Breaths Min"
+          },
+          "rr_status": {
+            "type": "string",
+            "enum": [
+              "experimental_unvalidated",
+              "unavailable_signal_quality"
+            ],
+            "title": "Rr Status"
+          },
+          "rr_details": {
+            "$ref": "#/components/schemas/RRDetails"
+          },
+          "input": {
+            "$ref": "#/components/schemas/WindowContract"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hr_bpm",
+          "hr_status",
+          "rr_breaths_min",
+          "rr_status",
+          "rr_details",
+          "input",
+          "limitations"
+        ],
+        "title": "VitalsResponse"
+      },
+      "WindowContract": {
+        "properties": {
+          "sample_hz": {
+            "type": "integer",
+            "const": 20,
+            "title": "Sample Hz"
+          },
+          "window_seconds": {
+            "type": "integer",
+            "const": 30,
+            "title": "Window Seconds"
+          },
+          "samples": {
+            "type": "integer",
+            "const": 600,
+            "title": "Samples"
+          },
+          "channels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Channels"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sample_hz",
+          "window_seconds",
+          "samples",
+          "channels"
+        ],
+        "title": "WindowContract"
+      }
+    }
+  }
+}

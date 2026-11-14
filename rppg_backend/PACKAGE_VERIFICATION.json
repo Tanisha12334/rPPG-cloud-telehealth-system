@@ -1,0 +1,45 @@
+{
+  "tests_run": 13,
+  "passed": 13,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 0.14895066700410098,
+  "python": "3.11.18 (main, Oct 25 2026, 19:41:29) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "os": "macOS-27.2-arm64-arm-64bit",
+  "dependency_environment": "Existing installed dependencies; no clean dependency download or cross-OS execution claimed.",
+  "source_isolation": "All nine runtime modules and checkpoint verified to load from the extracted package, not original project sources.",
+  "transport": "in_process_ASGI",
+  "original_project_modified": false,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.15.0",
+    "fastapi": "0.162.4",
+    "uvicorn": "0.54.0",
+    "pydantic": "2.14.3",
+    "starlette": "1.10.0",
+    "httpx": "0.28.1"
+  },
+  "original_integrity": {
+    "original_files_checked": 35715,
+    "unchanged": true,
+    "changed": [],
+    "missing": [],
+    "added": [],
+    "includes_original_virtual_environment": true,
+    "original_checkpoint_sha256": "d3cab5e666735066a91b8c09f9b7cfa7e88d8c87d8836821c0c08fda34b36c54",
+    "packaging_location": "outside the original project"
+  },
+  "verified_utc": "2026-11-11T15:29:37.414825+00:00",
+  "source_and_model_files_copied_without_changes": true,
+  "excluded": [
+    "large datasets",
+    "videos",
+    "virtual environment",
+    "training scripts",
+    "university reports",
+    "original test suite",
+    "backups"
+  ]
+}

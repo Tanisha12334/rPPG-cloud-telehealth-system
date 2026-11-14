@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "shape": [
+    600,
+    9
+  ],
+  "sample_hz": 20,
+  "window_seconds": 30,
+  "channels": [
+    "forehead_r",
+    "forehead_g",
+    "forehead_b",
+    "left_cheek_r",
+    "left_cheek_g",
+    "left_cheek_b",
+    "right_cheek_r",
+    "right_cheek_g",
+    "right_cheek_b"
+  ],
+  "rgb_range": [
+    0,
+    255
+  ],
+  "normalization": "send_raw_RGB_means",
+  "timestamps": "uniform_20Hz_samples_required",
+  "roi_definitions_source": "existing preprocess.py ROIS",
+  "rr_unavailable_value": null,
+  "rr_validation": "no_independent_RR_reference",
+  "request_fields": [
+    "sample_hz",
+    "channels",
+    "rgb_window"
+  ]
+}

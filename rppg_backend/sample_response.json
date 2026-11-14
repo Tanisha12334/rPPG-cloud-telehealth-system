@@ -1,0 +1,46 @@
+{
+  "hr_bpm": 105.24101529181908,
+  "hr_status": "preliminary_cnn",
+  "rr_breaths_min": 8.0,
+  "rr_status": "experimental_unvalidated",
+  "rr_details": {
+    "rr_breaths_min": 8.0,
+    "status": "experimental_unvalidated",
+    "validated": false,
+    "method": "experimental_riiv_green_v1",
+    "candidate_breaths_min": 8.0,
+    "reasons": [],
+    "quality": {
+      "active_rois": 3,
+      "agreeing_rois": 3,
+      "roi_peak_breaths_min": [
+        8.0,
+        10.0,
+        8.0
+      ],
+      "peak_concentration": 0.7933071165043046,
+      "confidence_calibrated": false
+    },
+    "limitations": "Experimental RGB intensity proxy; no independent RR labels are available. Motion and illumination can mimic respiration. Quality checks do not establish that a detected rhythm is breathing. Search range is 6\u201330 breaths/min; 30-second windows give 2 breaths/min spectral bins. Band-edge, ambiguous, or disagreeing signals return null. Null does not mean zero breathing."
+  },
+  "input": {
+    "sample_hz": 20,
+    "window_seconds": 30,
+    "samples": 600,
+    "channels": [
+      "forehead_r",
+      "forehead_g",
+      "forehead_b",
+      "left_cheek_r",
+      "left_cheek_g",
+      "left_cheek_b",
+      "right_cheek_r",
+      "right_cheek_g",
+      "right_cheek_b"
+    ]
+  },
+  "limitations": [
+    "HR evaluated on only one held-out subject/window; baseline performed slightly better.",
+    "RR has no independent reference evaluation; an experimental rhythm is not verified breathing."
+  ]
+}

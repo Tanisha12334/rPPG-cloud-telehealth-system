@@ -1,0 +1,20 @@
+test_01_packaged_sources_and_checkpoint (__main__.PackageTests.test_01_packaged_sources_and_checkpoint) ... ok
+test_02_real_sample_hr (__main__.PackageTests.test_02_real_sample_hr) ... ok
+test_03_real_sample_experimental_rr (__main__.PackageTests.test_03_real_sample_experimental_rr) ... ok
+test_04_health_and_contract (__main__.PackageTests.test_04_health_and_contract) ... ok
+test_05_openapi_schema (__main__.PackageTests.test_05_openapi_schema) ... ok
+test_06_insufficient_length (__main__.PackageTests.test_06_insufficient_length) ... ok
+test_07_constant_input (__main__.PackageTests.test_07_constant_input) ... ok
+test_08_no_video_or_images (__main__.PackageTests.test_08_no_video_or_images) ... ok
+test_09_internal_failure_safe (__main__.PackageTests.test_09_internal_failure_safe) ... Vitals inference unavailable (InferenceFailure)
+ok
+test_10_nonpositive_hr_not_returned (__main__.PackageTests.test_10_nonpositive_hr_not_returned) ... Vitals inference unavailable (InferenceFailure)
+ok
+test_11_wrong_channel_order_and_rate (__main__.PackageTests.test_11_wrong_channel_order_and_rate) ... ok
+test_12_rr_abstention_keeps_hr (__main__.PackageTests.test_12_rr_abstention_keeps_hr) ... ok
+test_13_cors (__main__.PackageTests.test_13_cors) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.149s
+
+OK
